@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
 import React, { useState } from "react";
@@ -7,6 +9,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 export default function profilepage() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
   const [data, setData] = useState("nothing");
 

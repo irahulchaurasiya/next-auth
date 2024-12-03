@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import {connect} from '@/dbConfig/dbconfig';
 import {NextRequest, NextResponse} from 'next/server';
 
 connect();
 
-export async function GET(request: NextRequest){
+export async function GET(){
     try {
         const response = NextResponse.json({
             message :  "Logout Successfully",

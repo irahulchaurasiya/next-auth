@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export default function page({ params }: any) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
