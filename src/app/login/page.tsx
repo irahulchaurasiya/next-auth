@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-
 "use client";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
@@ -26,7 +25,7 @@ export default function LoginPage() {
       router.push("/profile");
     } catch (error: any) {
       console.log("Login failed", error.message);
-      toast.error(error.message);
+      toast.error(error.message || "Login failed");
     } finally {
       setLoading(false);
     }
@@ -71,6 +70,9 @@ export default function LoginPage() {
         Login here
       </button>
       <Link href="/signup">Visit Signup page</Link>
+      <h1 className="text-xl mt-2">
+        Make Sure your account is verified before login
+      </h1>
     </div>
   );
 }
