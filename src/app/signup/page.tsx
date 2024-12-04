@@ -2,7 +2,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -27,7 +27,7 @@ export default function SignupPage() {
       router.push("/login");
     } catch (error: any) {
       console.log("Signup Failed", error);
-      toast.error(error.message);
+      toast.error("User already exists");
     }
   };
 
@@ -81,6 +81,7 @@ export default function SignupPage() {
       >
         {buttonDisabled ? "No signup" : "Signup"}
       </button>
+      <Toaster />
       <Link href="/login">Visit login page</Link>
     </div>
   );

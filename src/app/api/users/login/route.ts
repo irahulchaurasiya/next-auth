@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
           error: "Please verify your account first",
         },
         {
-          status: 400,
+          status: 404,
         }
       );
     }

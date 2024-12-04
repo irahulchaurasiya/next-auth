@@ -5,7 +5,7 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -24,8 +24,19 @@ export default function LoginPage() {
       toast.success("Login success");
       router.push("/profile");
     } catch (error: any) {
-      console.log("Login failed", error.message);
-      toast.error(error.message || "Login failed");
+      if (error.response) {
+        const statusCode = error.response.status;
+        if (statusCode === 404) {
+          toast.error("Verify your email before logging in.");
+        } else if (statusCode === 400) {
+          toast.error("Incorrect credentials. Please try again.");
+        } else {
+          toast.error("Something went wrong. Please try again later.");
+        }
+      } else {
+        toast.error("Network error. Please check your connection.");
+      }
+      console.error("Login failed", error);
     } finally {
       setLoading(false);
     }
@@ -69,6 +80,7 @@ export default function LoginPage() {
       >
         Login here
       </button>
+      <Toaster />
       <Link href="/signup">Visit Signup page</Link>
       <h1 className="text-xl mt-2">
         Make Sure your account is verified before login
